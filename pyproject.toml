@@ -1,0 +1,111 @@
+[tool.poetry]
+name = "nwo"
+version = "0.1.0"
+description = "Django + django ninja starter"
+authors = ["Zach Kauffman <zkauffman4@gmail.com>"]
+readme = "README.md"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # The following are specific to Black, you probably don't want those.
+  | mypy_stubs
+  | static
+  | staticfiles
+  | templates
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-ignore = ["E501"]
+exclude = [
+    "**/migrations/**",
+]
+
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+mypy_path = "./mypy_stubs:./src"
+
+[tool.django-stubs]
+django_settings_module = "nwo.settings"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--no-migrations"
+DJANGO_SETTINGS_MODULE = "nwo.settings"
+pythonpath = "./src"
+env_files = [
+    ".env"
+]
+env = [
+    "DJANGO_SETTINGS_MODULE = nwo.settings",
+    "DB_HOST = host.docker.internal",
+    "TESTING=True"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "4.2.7"
+django-ninja = "1.3.0"
+django-ninja-extra = "0.21.8"
+ninja-schema = "^0.13.5"
+django-ninja-jwt = "5.2.10"
+django-model-utils = "^4.3.1"
+localflavor = "^1.9"
+django-localflavor = "^4.0"
+beautifulsoup4 = "^4.12.2"
+requests = "^2.31.0"
+python-slugify = "^8.0.1"
+pycryptodome = "^3.19.0"
+python-dateutil = "^2.8.2"
+factory-boy = "^3.3.0"
+djangorestframework = "^3.14.0"
+django-timezone-field = "^6.1.0"
+django-cors-headers = "^4.3.1"
+dj-rest-auth = "^5.0.2"
+django-allauth = "^65.1.0"
+psycopg-binary = "^3.2.3"
+psycopg2-binary = "^2.9.10"
+gunicorn = "^23.0.0"
+dj-database-url = "^2.3.0"
+django-extensions = "^3.2.3"
+scrapfly-sdk = "^0.8.19"
+parsel = "^1.9.1"
+loguru = "^0.7.2"
+langchain = "^0.3.8"
+langchain-anthropic = "^0.3.0"
+psycopg2 = "^2.9.10"
+atomic-agents = "^1.0.15"
+django-storages = "^1.14.4"
+boto3 = "^1.35.72"
+django-ninja-simple-jwt = "^0.6.1"
+uuid-utils = "^0.10.0"
+uuid7 = "^0.1.0"
+slack-sdk = "^3.33.5"
+celery = "^5.4.0"
+redis = "^5.2.1"
+watchfiles = "^1.0.3"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+pytest = "^7.4.3"
+pytest-django = "^4.7.0"
+ruff = "^0.1.7"
+pytest-dotenv = "^0.5.2"
+moto = "^5.0.22"
+snakeviz = "^2.2.2"
+watchdog = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

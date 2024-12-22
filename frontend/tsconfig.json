@@ -1,0 +1,16 @@
+{
+  "include": [
+    "./typed-router.d.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["vue"]
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" }
+  ]
+}
